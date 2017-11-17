@@ -27,6 +27,14 @@
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.12" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.retry:spring-retry:1.2.1.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0" />
+          <element id="library" level="project" name="Maven: com.googlecode.log4jdbc:log4jdbc:1.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="archive" name="sub-two-1.0-SNAPSHOT.jar">
             <element id="module-output" name="subtwo" />
           </element>

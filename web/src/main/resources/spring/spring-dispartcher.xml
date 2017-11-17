@@ -13,6 +13,6 @@
     <mvc:annotation-driven/>
 
     <!-- 自动扫描包 -->
-    <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="alyn.controller"/>
 
 </beans>
