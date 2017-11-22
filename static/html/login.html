@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login Page</title>
+    <script type="application/javascript" src="../utils/jquery-3.2.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script type="application/javascript" src="../js/login.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <label>用户名：</label>
+    <input type="text" ng-model="name"/>
+    <label>密码：</label>
+    <input type="password" ng-model="password"/>
+    <button ng-click="login()">登录</button>
+</div>
+</body>
+</html>
