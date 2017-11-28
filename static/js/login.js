@@ -2,15 +2,14 @@
  * Created by hp on 2017/11/22.
  */
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
+app.controller('myCtrl', function($scope, $http) {
     var data = {};
-    data.name = $scope.name;
-    data.password = $scope.password;
-
     $scope.login = function () {
+        data.name = $scope.name;
+        data.password = $scope.password;
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/login/doLogin',
+            url: 'http://localhost:8081/login/doLogin',
             data: data
         }).then(function successCallback(response) {
             // 请求成功执行代码
