@@ -22,6 +22,6 @@ public class AccessController {
 
         logger.info(params);
         logger.info(request);
-
+        logger.info(response);
     }
 }
