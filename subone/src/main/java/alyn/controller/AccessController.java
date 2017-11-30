@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -20,8 +21,12 @@ public class AccessController {
     @RequestMapping(value="/doLogin", method= RequestMethod.POST)
     public void doLogin(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> params){
 
-        logger.info(params);
-        logger.info(params);
+        String userName = String.valueOf(params.get("userName"));
+        String password = String.valueOf(params.get("password"));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("userName", userName);
+        session.setAttribute("password", password);
 
     }
 }

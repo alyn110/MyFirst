@@ -15,4 +15,15 @@
     <!-- 自动扫描包 -->
     <context:component-scan base-package="alyn.controller"/>
 
+    <!-- 配置mvc的拦截器 可以配置多个  -->
+    <mvc:interceptors>
+    <!-- 共通检查及处理拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/*/*/*/*"/>
+            <!-- 例外 -->
+            <mvc:exclude-mapping path="/login/doLogin"/>
+            <bean class="alyn.intercepter.LoginIntercepter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
