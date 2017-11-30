@@ -21,6 +21,8 @@ public class AccessController {
     public void doLogin(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> params){
 
         logger.info(params);
+        logger.info(params);
+
         logger.info(request);
 
     }
