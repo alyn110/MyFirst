@@ -24,7 +24,5 @@ public class AccessController {
         logger.info(request);
         logger.info(response);
 
-
-
     }
 }
