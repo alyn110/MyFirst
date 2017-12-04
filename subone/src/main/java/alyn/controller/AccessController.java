@@ -38,7 +38,7 @@ public class AccessController {
         UserSessionBean user = new UserSessionBean();
         user.setName("alyn");
         user.setPassword("123456");
-        logger.info(user);
+        logger.info(user.getName());
 //        File f = new File("D:" + File.separator + "test.txt") ; // 定义保存路径
 //        ObjectOutputStream oos = null ; // 声明对象输出流
 //        OutputStream out = null;    // 文件输出流
