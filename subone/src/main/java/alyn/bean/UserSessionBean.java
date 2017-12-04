@@ -1,6 +1,6 @@
 package alyn.bean;
 
-public class User {
+public class UserSessionBean{
     private String name;
     private String password;
 
