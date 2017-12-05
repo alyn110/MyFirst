@@ -1,6 +1,8 @@
 package alyn.controller;
 
+import alyn.bean.ResponseBean;
 import alyn.bean.UserSessionBean;
+import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,14 @@ public class AccessController {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
+        ResponseBean responseBean = new ResponseBean();
+        responseBean.setForward("/login/index.html");
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.print(new Gson().toJson(responseBean));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
