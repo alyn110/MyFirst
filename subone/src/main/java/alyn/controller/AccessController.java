@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,7 @@ public class AccessController {
         responseBean.setForward("/login/index.html");
         try {
             PrintWriter writer = response.getWriter();
-            writer.print(new Gson().toJson(responseBean));
+            writer.write("侬好啊：" + new Gson().toJson(responseBean));
         } catch (IOException e) {
             e.printStackTrace();
         }
