@@ -1,6 +1,7 @@
 package alyn.controller;
 
 import alyn.bean.ResponseBean;
+import alyn.bean.UserBean;
 import alyn.bean.UserSessionBean;
 import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
@@ -9,36 +10,48 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/login")
 public class AccessController {
     private static Log logger = LogFactory.getLog(AccessController.class);
+    private static List<UserBean> userBeanList = new ArrayList<UserBean>();
+    static {
+        List<UserBean> userList = new ArrayList<UserBean>();
+        userList.add(new UserBean("alyn", "123456"));
+        userList.add(new UserBean("jessie", "abcdefg"));
+        userBeanList = userList;
+    }
 
     @RequestMapping(value="/doLogin", method= RequestMethod.POST)
-    public void doLogin(HttpServletRequest request, HttpServletResponse response, @RequestBody Map<String, Object> params){
-
-        String userName = String.valueOf(params.get("userName"));
-        String password = String.valueOf(params.get("password"));
+    public void doLogin(HttpServletRequest request, HttpServletResponse response, @RequestBody UserBean userBean){
+        if(userBeanList.contains(userBean)){
+            logger.info("用户存在");
+        }else{
+            logger.info("用户不存在");
+        }
 
         UserSessionBean user = new UserSessionBean();
-        user.setName(userName);
-        user.setPassword(password);
+        user.setName(userBean.getUserName());
+        user.setPassword(userBean.getPassword());
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-
+        if(session.isNew()){
+            logger.info("session是新建的，" + session.getId());
+        }else{
+            logger.info("session已存在，" + session.getId());
+        }
         ResponseBean responseBean = new ResponseBean();
-        responseBean.setForward("/login/index.html");
+        responseBean.setForward("/html/index.html");
         try {
             PrintWriter writer = response.getWriter();
-            writer.write("侬好啊：" + new Gson().toJson(responseBean));
+            writer.write(new Gson().toJson(responseBean));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,43 +59,7 @@ public class AccessController {
     }
 
     public static void main(String[] args){
-        UserSessionBean user = new UserSessionBean();
-        user.setName("alyn");
-        user.setPassword("123456");
-        logger.info(user.getName());
-//        File f = new File("D:" + File.separator + "test.txt") ; // 定义保存路径
-//        ObjectOutputStream oos = null ; // 声明对象输出流
-//        OutputStream out = null;    // 文件输出流
-//        try {
-//            out = new FileOutputStream(f);
-//            oos = new ObjectOutputStream(out) ;
-//            oos.writeObject(user) ;  // 保存对象
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }finally {
-//            try {
-//                oos.close() ;   // 关闭
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//
-//        UserSessionBean user1 = new UserSessionBean();
-//        try {
-//            FileInputStream is = new FileInputStream(f);
-//            ObjectInputStream ois = new ObjectInputStream(is);
-//            user1 = (UserSessionBean)ois.readObject();
-//            logger.info(user1);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 }
