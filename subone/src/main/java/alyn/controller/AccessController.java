@@ -3,9 +3,13 @@ package alyn.controller;
 import alyn.bean.ResponseBean;
 import alyn.bean.UserBean;
 import alyn.bean.UserSessionBean;
+import alyn.dao.TransferDao;
+import alyn.model.Transfer;
 import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +63,10 @@ public class AccessController {
     }
 
     public static void main(String[] args){
-
+        ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-context.xml");
+        TransferDao transferDao = (TransferDao)ac.getBean("transferDao");
+        List<Transfer> transfers = transferDao.getAll();
+        logger.info(transferDao);
     }
 
 }

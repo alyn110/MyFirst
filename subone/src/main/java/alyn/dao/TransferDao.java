@@ -1,11 +1,14 @@
 package alyn.dao;
 
+import alyn.model.Transfer;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class TransferDao extends BaseDao{
 
-    public void getLimit(int limit){
-        sqlSessionTemplate.selectOne(namespace + "transfer_getLimit");
+    public List<Transfer> getAll(){
+        return sqlSessionTemplate.selectList(namespace + "transfer_getAll");
     }
 }

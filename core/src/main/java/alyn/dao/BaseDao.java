@@ -7,5 +7,5 @@ public class BaseDao {
     @Autowired
     protected SqlSessionTemplate sqlSessionTemplate;
 
-    protected String namespace = "com.alyn.sql";
+    protected String namespace = "com.alyn.sql.";
 }

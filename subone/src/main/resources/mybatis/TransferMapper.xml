@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alyn.sql">
-    <select id="transfer_getLimit" parameterType="int" resultMap="HashMap">
+    <resultMap id="BaseResultMap" type="alyn.model.Transfer" />
+    <sql id="Base_Column_List" >
+        `id`, `transfer_name`, `package_name`, `sku`, `qty`
+    </sql>
+    <select id="transfer_getAll" resultMap="BaseResultMap">
         select
           *
         from
           transfer
-        limit #{limit}
     </select>
 </mapper>
