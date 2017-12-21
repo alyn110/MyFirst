@@ -2,8 +2,6 @@ package alyn.model;
 
 public class TransferSku {
     private long id;
-    private String transferName;
-    private String packageName;
     private String sku;
     private int qty;
 
@@ -13,22 +11,6 @@ public class TransferSku {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getTransferName() {
-        return transferName;
-    }
-
-    public void setTransferName(String transferName) {
-        this.transferName = transferName;
-    }
-
-    public String getPackageName() {
-        return packageName;
-    }
-
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
     }
 
     public String getSku() {

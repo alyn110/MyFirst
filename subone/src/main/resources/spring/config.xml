@@ -9,9 +9,9 @@
      http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <bean id="dataSourceMaster" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="net.sf.log4jdbc.DriverSpy" />
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
         <property name="jdbcUrl"
-                  value="jdbc:log4jdbc:mysql://10.0.0.83:3306/test?useOldAliasMetadataBehavior=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true" />
+                  value="jdbc:mysql://localhost:3306/test?useOldAliasMetadataBehavior=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;serverTimezone=UTC " />
         <property name="user" value="root"/>
         <property name="password" value="root"/>
         <!--初始化时获取连接的数目，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
@@ -40,4 +40,10 @@
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg ref="sqlSessionFactoryMaster" />
     </bean>
+
+    <!-- JDBC事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSourceMaster" />
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

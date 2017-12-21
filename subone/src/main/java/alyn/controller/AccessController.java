@@ -4,7 +4,10 @@ import alyn.bean.ResponseBean;
 import alyn.bean.UserBean;
 import alyn.bean.UserSessionBean;
 import alyn.dao.TransferDao;
+import alyn.dao.TransferSkuDao;
 import alyn.model.Transfer;
+import alyn.model.TransferSku;
+import alyn.service.TestTransactionServiceImpl;
 import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -63,10 +66,32 @@ public class AccessController {
     }
 
     public static void main(String[] args){
-        ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-context.xml");
-        TransferDao transferDao = (TransferDao)ac.getBean("transferDao");
-        List<Transfer> transfers = transferDao.getAll();
-        logger.info(transferDao);
+        try {
+            ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-context.xml");
+//            TransferDao transferDao = (TransferDao) ac.getBean("transferDao");
+//            List<Transfer> transfers = transferDao.getAll();
+//            logger.info(transfers);
+//
+            Transfer transfer = new Transfer();
+            transfer.setId(1);
+            transfer.setPackageName("test PackageName");
+//            transferDao.update(transfer);
+
+//            TransferSkuDao transferSkuDao = (TransferSkuDao) ac.getBean("transferSkuDao");
+//            List<TransferSku> transferSkus = transferSkuDao.getAll();
+//            logger.info(transferSkus);
+//
+            TransferSku transferSku = new TransferSku();
+            transferSku.setId(1);
+            transferSku.setSku("new sku");
+//            transferSkuDao.update(transferSku);
+
+            TestTransactionServiceImpl testTransactionServiceImpl = (TestTransactionServiceImpl) ac.getBean("testTransactionServiceImpl");
+            testTransactionServiceImpl.update(transfer, transferSku);
+
+        }catch(Exception e){
+            logger.error(e);
+        }
     }
 
 }
